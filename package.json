@@ -1,0 +1,16 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "chance": {
+      "version": "1.0.16",
+      "resolved": "https://registry.npmjs.org/chance/-/chance-1.0.16.tgz",
+      "integrity": "sha512-2bgDHH5bVfAXH05SPtjqrsASzZ7h90yCuYT2z4mkYpxxYvJXiIydBFzVieVHZx7wLH1Ag2Azaaej2/zA1XUrNQ=="
+    },
+    "lodash": {
+      "version": "4.17.10",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.10.tgz",
+      "integrity": "sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg=="
+    }
+  }
+}
