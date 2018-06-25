@@ -29,18 +29,21 @@ exports.handler = (event, context, callback) => {
 
   const validate = (data) => {
     //If the input is missing rowsToReturn or comlums it's invalid
-    if(!data.hasOwnProperty('rowsToReturn') || !data.hasOwnProperty('columns')){
+    if(data.rowsToReturn === 'undefined' || data.columns === 'undefined'){
       return false;
     } else { //Each column must have a columnName and a function to be valid
-      return data.columns.every(function(x) {x.hasOwnProperty('columnName') && x.hasOwnProperty('function')});
+      return data.columns.every(function(x) {
+        return x.columnName !== 'undefined' && x.function !== 'undefined' ;
+      });
     }
 
   }
 
   switch (event.httpMethod) {
     case 'POST':
-      var data = JSON.parse(event.body);
-      if(validate){
+      //var data = JSON.parse(event.body);
+      var data = event.body;
+      if(validate(data)){
         done(null, generate(data.rowsToReturn, data.columns));
       }else{
         done(new Error(`Data is not in expected format.`));  
