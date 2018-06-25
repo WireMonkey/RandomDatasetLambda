@@ -27,10 +27,24 @@ exports.handler = (event, context, callback) => {
     return records;
   };
 
+  const validate = (data) => {
+    //If the input is missing rowsToReturn or comlums it's invalid
+    if(!data.hasOwnProperty('rowsToReturn') || !data.hasOwnProperty('columns')){
+      return false;
+    } else { //Each column must have a columnName and a function to be valid
+      return data.columns.every(function(x) {x.hasOwnProperty('columnName') && x.hasOwnProperty('function')});
+    }
+
+  }
+
   switch (event.httpMethod) {
     case 'POST':
       var data = JSON.parse(event.body);
-      done(null, generate(data.rowsToReturn, data.columns));
+      if(validate){
+        done(null, generate(data.rowsToReturn, data.columns));
+      }else{
+        done(new Error(`Data is not in expected format.`));  
+      }
       break;
     case 'OPTIONS':
       done(new Error('https://chancejs.com/'));
