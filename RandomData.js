@@ -41,8 +41,7 @@ exports.handler = (event, context, callback) => {
 
   switch (event.httpMethod) {
     case 'POST':
-      //var data = JSON.parse(event.body);
-      var data = event.body;
+      var data = JSON.parse(event.body);
       if(validate(data)){
         done(null, generate(data.rowsToReturn, data.columns));
       }else{
